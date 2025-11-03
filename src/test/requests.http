@@ -1,0 +1,60 @@
+### Test root endpoint
+GET http://localhost:7076/api/v1/
+
+###
+
+### Get all highscores
+GET http://localhost:7076/api/v1/highscores
+
+###
+
+### Create new highscores (accepts array)
+POST http://localhost:7076/api/v1/highscore
+Content-Type: application/json
+
+[
+  {
+    "userName": "Alice",
+    "score": 1500
+  },
+  {
+    "userName": "Bob", 
+    "score": 2000
+  }
+]
+
+###
+
+### Create single highscore
+POST http://localhost:7076/api/v1/highscore
+Content-Type: application/json
+
+[
+  {
+    "userName": "Charlie",
+    "score": 1750
+  }
+]
+
+###
+
+### Get specific highscore by ID (replace 1 with actual ID)
+GET http://localhost:7076/api/v1/highscore/1
+
+###
+
+### Update highscore by ID (replace 1 with actual ID)
+PUT http://localhost:7076/api/v1/highscore/1
+Content-Type: application/json
+
+{
+  "userName": "Alice Updated",
+  "score": 2500
+}
+
+###
+
+### Delete highscore by ID (replace 1 with actual ID)
+DELETE http://localhost:7076/api/v1/highscore/1
+
+###

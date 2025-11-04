@@ -3,8 +3,10 @@ import app.config.HibernateConfig;
 import app.utils.Populator;
 import io.javalin.Javalin;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import jakarta.persistence.EntityManagerFactory;
 
+import org.eclipse.jetty.http.HttpStatus;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -50,6 +52,17 @@ public class CandidateApiTest {
                 .get("/candidates/1")
                 .then()
                 .statusCode(200);
+    }
+
+    @Test
+    public void getFakeCandidate(){
+        given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/candidates/{id}", 999)
+                .then()
+                .log().body()
+                .statusCode(HttpStatus.NOT_FOUND_404);
     }
 
     @Test

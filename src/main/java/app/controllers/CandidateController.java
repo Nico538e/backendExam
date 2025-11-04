@@ -32,12 +32,13 @@ public class CandidateController implements IController<Candidate, Integer> {
     public void getById(Context ctx) {
         int id  = Integer.parseInt(ctx.pathParam("id"));
         Candidate candidate = candidateDAO.getById(id);
-        CandidateDTO dto = service.toDTO(candidate);
-        if(dto == null){
+
+        if(candidate == null){
             ctx.status(404).json(Map.of("message", "Candidate not found"));
-        }else {
-            ctx.json(dto);
+            return;
         }
+            CandidateDTO dto = service.toDTO(candidate);
+            ctx.json(dto);
 
     }
 

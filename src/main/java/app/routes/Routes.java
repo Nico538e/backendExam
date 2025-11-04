@@ -6,11 +6,13 @@ import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
 public class Routes {
-    public EndpointGroup getRoutes() {
+    private CandidateRoutes candidateRoutes =  new CandidateRoutes();
+
+    public EndpointGroup getRoutes(){
         return () -> {
             get("/", ctx -> ctx.result("Hello api"));
 
-
+            path("/candidates", candidateRoutes.getCandidateRoutes());
         };
     }
 }
